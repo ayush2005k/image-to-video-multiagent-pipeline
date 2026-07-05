@@ -10,64 +10,28 @@ def intent_parser(state: PipelineState):
     structured_model = llm.with_structured_output(VideoIntent)
 
     intent = structured_model.invoke(
-
         f"""
-
 You are an AI Video Planner.
 
-Extract the following fields.
+Analyze the user's prompt and populate the VideoIntent schema.
 
 Rules:
 
-1. pacing:
-Choose exactly one:
-slow
-medium
-fast
+- pacing: choose ONLY one of: slow, medium, fast
+- visual_style: choose ONLY one of: cinematic, upbeat, corporate, modern, luxury, documentary
+- caption_tone: choose ONLY one of: minimal, bold, emotional, professional
+- transition_style: choose ONLY one of: fade, cut, zoom, crossfade, slide
 
-2. visual_style:
-Choose exactly one:
-cinematic
-upbeat
-corporate
-modern
-luxury
-documentary
-
-3. caption_tone:
-Choose exactly one:
-minimal
-bold
-emotional
-professional
-
-4. transition_style:
-Choose exactly one:
-fade
-cut
-zoom
-crossfade
-slide
-
-Only choose from these options.
+Never invent new values.
+Never combine multiple values.
+Select the closest matching option from the allowed list.
 
 User Prompt:
 
-
 {prompt}
-
-Return
-
-- pacing
-
-- visual_style
-
-- caption_tone
-
-- transition_style
-
 """
-
     )
 
-   
+    return {
+        "intent": intent
+    }

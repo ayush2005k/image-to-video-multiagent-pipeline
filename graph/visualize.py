@@ -1,9 +1,12 @@
 from graph.pipeline import graph
 
-graph.get_graph().draw_mermaid_png(
+try:
+    png = graph.get_graph().draw_mermaid_png()
 
-    output_file_path="graph.png"
+    with open("graph.png", "wb") as f:
+        f.write(png)
 
-)
+    print("✅ Graph saved as graph.png")
 
-print("Graph Saved!")
+except Exception as e:
+    print(f"Error: {e}")

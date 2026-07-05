@@ -1,11 +1,30 @@
+from typing import Literal
 from pydantic import BaseModel
 
+
 class VideoIntent(BaseModel):
+    pacing: Literal["slow", "medium", "fast"]
 
-    pacing:str
+    visual_style: Literal[
+        "cinematic",
+        "upbeat",
+        "corporate",
+        "modern",
+        "luxury",
+        "documentary"
+    ]
 
-    visual_style:str
+    caption_tone: Literal[
+        "minimal",
+        "bold",
+        "emotional",
+        "professional"
+    ]
 
-    caption_tone:str
-
-    transition_style:str
+    transition_style: Literal[
+        "fade",
+        "cut",
+        "zoom",
+        "crossfade",
+        "slide"
+    ]

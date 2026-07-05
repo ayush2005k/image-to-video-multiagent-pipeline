@@ -15,9 +15,44 @@ def intent_parser(state: PipelineState):
 
 You are an AI Video Planner.
 
-Convert the user's prompt into structured data.
+Extract the following fields.
 
-Prompt:
+Rules:
+
+1. pacing:
+Choose exactly one:
+slow
+medium
+fast
+
+2. visual_style:
+Choose exactly one:
+cinematic
+upbeat
+corporate
+modern
+luxury
+documentary
+
+3. caption_tone:
+Choose exactly one:
+minimal
+bold
+emotional
+professional
+
+4. transition_style:
+Choose exactly one:
+fade
+cut
+zoom
+crossfade
+slide
+
+Only choose from these options.
+
+User Prompt:
+
 
 {prompt}
 
@@ -35,8 +70,4 @@ Return
 
     )
 
-    return {
-
-        "intent": intent
-
-    }
+   

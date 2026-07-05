@@ -1,13 +1,23 @@
-from config import settings
-from utils.logger import console
+from graph.pipeline import graph
 
-def main():
+initial_state = {
 
-    console.print("[green]Image-to-Video Multi-Agent Pipeline[/green]")
+    "prompt":
 
-    console.print(f"Retry Limit : {settings.RETRY_LIMIT}")
+    "Cinematic wedding reel, slow and emotional, warm tones, minimal text",
 
-    console.print(f"Assets Folder : {settings.IMAGE_FOLDER}")
+    "retry_count":0
 
-if __name__=="__main__":
-    main()
+}
+
+result = graph.invoke(
+
+    initial_state
+
+)
+
+print()
+
+print(result["intent"])
+
+print()

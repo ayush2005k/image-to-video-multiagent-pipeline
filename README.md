@@ -12,4 +12,4 @@ An Agentic AI pipeline built using LangGraph.
 - Video rendering
 - Local RAG
 
-#incompele
+

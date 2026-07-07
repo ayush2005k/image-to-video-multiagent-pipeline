@@ -23,3 +23,5 @@ chroma_db/
 .pytest_cache/
 
 *.log
+
+*.heic

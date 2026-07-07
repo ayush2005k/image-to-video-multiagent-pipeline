@@ -1,19 +1,28 @@
 from pathlib import Path
 
+SUPPORTED_FORMATS = {
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+    ".heic",
+    ".heif"
+}
 
-SUPPORTED_FORMATS = [".jpg", ".jpeg", ".png"]
 
-
-def load_images(folder):
+def load_images(folder: str):
 
     folder = Path(folder)
 
+    if not folder.exists():
+        raise FileNotFoundError(f"{folder} does not exist.")
+
     images = []
 
-    for file in folder.iterdir():
+    for image in folder.iterdir():
 
-        if file.suffix.lower() in SUPPORTED_FORMATS:
+        if image.suffix.lower() in SUPPORTED_FORMATS:
 
-            images.append(file)
+            images.append(image)
 
     return sorted(images)

@@ -9,4 +9,5 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=settings.GOOGLE_API_KEY,
 
     temperature=0
+
 )

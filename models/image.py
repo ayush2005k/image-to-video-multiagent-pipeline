@@ -1,13 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 class ImageAnalysis(BaseModel):
 
-    filename:str
+    filename: str
 
-    description:str
+    description: str
 
-    emotion:str
+    emotion: str
 
-    importance:int
+    people_count: int = Field(ge=0)
 
-    people:int
+    importance: int = Field(ge=1, le=10)
+
+    scene_type: str

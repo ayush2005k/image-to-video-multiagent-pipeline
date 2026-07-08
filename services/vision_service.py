@@ -3,7 +3,7 @@ import json
 from google import genai
 
 from PIL import Image
-from rich.pretty import data
+
 
 from config import settings
 
@@ -18,6 +18,8 @@ client = genai.Client(
 
 
 def analyze_image(image_path):
+    
+    from utils.image_utils import open_image
 
     image = Image.open(image_path)
 

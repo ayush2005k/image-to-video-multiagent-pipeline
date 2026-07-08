@@ -3,6 +3,7 @@ from typing import TypedDict
 from models.intent import VideoIntent
 from models.image import ImageAnalysis
 from models.storyboard import StoryboardScene
+from models.storyboard import Storyboard
 
 class PipelineState(TypedDict):
 
@@ -14,7 +15,7 @@ class PipelineState(TypedDict):
 
     selected_images:list[str]
 
-    storyboard:list[StoryboardScene]
+    storyboard: Storyboard
 
     remotion_script:str
 

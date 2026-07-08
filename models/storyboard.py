@@ -1,11 +1,17 @@
 from pydantic import BaseModel
 
+
 class StoryboardScene(BaseModel):
 
-    image:str
+    image: str
 
-    duration:float
+    duration: float
 
-    caption:str
+    caption: str
 
-    transition:str
+    transition: str
+
+
+class Storyboard(BaseModel):
+
+    scenes: list[StoryboardScene]

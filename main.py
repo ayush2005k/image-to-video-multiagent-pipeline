@@ -27,3 +27,13 @@ for image in result["image_analysis"]:
     print()
 
 print("=" * 50)
+
+print()
+
+print("========== SELECTED IMAGES ==========\n")
+
+for image in result["selected_images"]:
+
+    print(image)
+
+print()

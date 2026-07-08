@@ -1,0 +1,20 @@
+STYLE: cinematic
+
+PACING:
+slow
+
+TRANSITIONS:
+fade
+crossfade
+
+CAPTIONS:
+minimal
+
+COLOR:
+warm
+
+SCENE_DURATION:
+4
+
+CAMERA_FEEL:
+emotional

@@ -1,0 +1,19 @@
+STYLE: corporate
+
+PACING:
+medium
+
+TRANSITIONS:
+fade
+
+CAPTIONS:
+professional
+
+COLOR:
+neutral
+
+SCENE_DURATION:
+3
+
+CAMERA_FEEL:
+clean

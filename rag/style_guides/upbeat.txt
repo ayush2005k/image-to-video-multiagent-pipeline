@@ -1,0 +1,20 @@
+STYLE: upbeat
+
+PACING:
+fast
+
+TRANSITIONS:
+cut
+zoom
+
+CAPTIONS:
+bold
+
+COLOR:
+bright
+
+SCENE_DURATION:
+2
+
+CAMERA_FEEL:
+energetic

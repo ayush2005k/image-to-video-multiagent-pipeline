@@ -1,24 +1,26 @@
 from state import PipelineState
 
+from services.storyboard_service import generate_storyboard
+
 
 def storyboard_writer(state: PipelineState):
 
     print("\n========== STORYBOARD WRITER ==========\n")
 
-    print("Intent")
+    storyboard = generate_storyboard(
 
-    print(state["intent"])
+        intent=state["intent"],
 
-    print()
+        selected_images=state["selected_images"],
 
-    print("Selected Images")
+        image_analysis=state["image_analysis"]
 
-    print(state["selected_images"])
+    )
 
-    print()
+    print("Storyboard Generated Successfully\n")
 
-    print("Loading style guide...")
+    return {
 
-    print()
+        "storyboard": storyboard
 
-    return {}
+    }

@@ -1,8 +1,68 @@
 from models.storyboard import Storyboard
 
+from prompts.storyboard_prompt import STORYBOARD_PROMPT
 
-def generate_storyboard():
+from rag.retriever import retrieve_context
 
-    raise NotImplementedError(
-        "Will be implemented in Chapter 5.4.2"
+from utils.llm import llm
+
+
+def generate_storyboard(
+
+        intent,
+
+        selected_images,
+
+        image_analysis
+
+):
+
+    style_docs = retrieve_context(
+
+        intent.visual_style,
+
+        k=1
+
     )
+
+    style_guide = style_docs[0]["text"]
+
+    structured_llm = llm.with_structured_output(
+
+        Storyboard
+
+    )
+
+    storyboard = structured_llm.invoke(
+
+        f"""
+{STORYBOARD_PROMPT}
+
+----------------------------
+
+VIDEO INTENT
+
+{intent}
+
+----------------------------
+
+STYLE GUIDE
+
+{style_guide}
+
+----------------------------
+
+SELECTED IMAGES
+
+{selected_images}
+
+----------------------------
+
+IMAGE ANALYSIS
+
+{image_analysis}
+
+"""
+    )
+
+    return storyboard

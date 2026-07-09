@@ -6,6 +6,8 @@ from rag.retriever import retrieve_context
 
 from utils.llm import llm
 
+from validators.storyboard_validator import validate_storyboard
+
 
 def generate_storyboard(
 
@@ -64,5 +66,7 @@ IMAGE ANALYSIS
 
 """
     )
+
+    storyboard = validate_storyboard(storyboard)
 
     return storyboard

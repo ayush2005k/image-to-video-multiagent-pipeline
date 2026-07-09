@@ -17,7 +17,14 @@ def storyboard_writer(state: PipelineState):
 
     )
 
-    print("Storyboard Generated Successfully\n")
+    print("✓ Storyboard Generated")
+
+    print(
+        f"Scenes : {len(storyboard.scenes)}"
+    )
+    print(
+        f"Total Duration : {storyboard.total_duration} sec"
+    )
 
     return {
 

@@ -5,65 +5,32 @@ import {
     Img,
     useCurrentFrame,
     interpolate,
-    staticFile
+    staticFile,
 } from "remotion";
 
-export const GeneratedVideo: React.FC = () => {
-    // Scene 1
-    // image: 'GHZQ9770.JPG'
-    // start_time: 0.0
-    // duration: 4.0
-    // caption: 'Shared joy.'
-    // transition: 'fade'
-
-    // Convert duration to frames
-    const scene1DurationFrames = 4.0 * 30; // 120 frames
-
-    return (
-        <AbsoluteFill style={{ backgroundColor: "black" }}>
-            <Sequence from={0} durationInFrames={scene1DurationFrames}>
-                <SceneContent
-                    image="GHZQ9770.JPG"
-                    caption="Shared joy."
-                    transition="fade"
-                    durationInFrames={scene1DurationFrames}
-                />
-            </Sequence>
-        </AbsoluteFill>
-    );
-};
-
-interface SceneContentProps {
-    image: string;
-    caption: string;
-    transition: "fade" | "cut" | "zoom" | "slide" | "crossfade";
-    durationInFrames: number;
-}
-
-const SceneContent: React.FC<SceneContentProps> = ({
-    image,
-    caption,
-    transition,
-    durationInFrames
-}) => {
+// Component for the first scene content, including its specific logic
+const Scene1Content: React.FC = () => {
     const frame = useCurrentFrame();
-    let style: React.CSSProperties = {};
+    const fadeDuration = 30; // 1 second fade-in
 
-    if (transition === "fade") {
-        const opacity = interpolate(
-            frame,
-            [0, 30], // Fade in over 1 second (30 frames)
-            [0, 1],
-            { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-        );
-        style = { opacity };
-    }
+    // Opacity for fade-in effect
+    const opacity = interpolate(
+        frame,
+        [0, fadeDuration],
+        [0, 1],
+        { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    );
 
     return (
-        <AbsoluteFill style={style}>
+        <AbsoluteFill>
             <Img
-                src={staticFile(image)}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                src={staticFile("GHZQ9770.JPG")}
+                style={{
+                    opacity,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                }}
             />
             <div
                 style={{
@@ -74,11 +41,23 @@ const SceneContent: React.FC<SceneContentProps> = ({
                     color: "white",
                     fontSize: 50,
                     fontWeight: "bold",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.7)"
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
+                    opacity, // Apply fade to caption as well
                 }}
             >
-                {caption}
+                Night's embrace.
             </div>
+        </AbsoluteFill>
+    );
+};
+
+export const GeneratedVideo: React.FC = () => {
+    return (
+        <AbsoluteFill style={{ backgroundColor: "black" }}>
+            {/* Scene 1: Night's embrace. */}
+            <Sequence from={0} durationInFrames={120}> {/* 4.0 seconds * 30 fps = 120 frames */}
+                <Scene1Content />
+            </Sequence>
         </AbsoluteFill>
     );
 };

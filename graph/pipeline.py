@@ -6,12 +6,11 @@ from state import PipelineState
 from agents.intent_parser import intent_parser
 from agents.image_analyzer import image_analyzer
 from agents.image_selector import image_selector
-
 from agents.storyboard_writer import storyboard_writer
-
 from agents.script_generator import script_generator
-
 from agents.compiler_agent import compiler_agent
+
+from routers.compiler_router import compiler_router
 
 builder = StateGraph(PipelineState)
 
@@ -49,6 +48,14 @@ builder.add_node(
     compiler_agent
 )
 
+# Temporary placeholder node
+# We will replace this in Chapter 7.4
+
+builder.add_node(
+    "fix_agent",
+    lambda state: state
+)
+
 # -------------------------
 # Entry Point
 # -------------------------
@@ -75,18 +82,26 @@ builder.add_edge(
     "image_selector",
     "storyboard_writer"
 )
+
 builder.add_edge(
     "storyboard_writer",
     "script_generator"
 )
+
 builder.add_edge(
     "script_generator",
     "compiler_agent"
 )
-builder.add_edge(
+
+builder.add_conditional_edges(
     "compiler_agent",
-    END
+    compiler_router,
+    {
+        "success": END,
+        "retry": "fix_agent"
+    }
 )
+
 # -------------------------
 # Compile Graph
 # -------------------------

@@ -1,21 +1,38 @@
-Img
+Remotion Components Reference
 
-AbsoluteFill
+Use these imports:
 
-Sequence
+import { AbsoluteFill, Sequence, Img } from "remotion";
 
-Audio
+Rules:
 
-TransitionSeries
+- Use AbsoluteFill as the root component.
+- Use one Sequence for each scene.
+- Use Img for images.
+- Use captions using normal text elements.
+- Sequence duration is given in frames.
+- FPS = 30.
 
-spring()
+Example:
 
-interpolate()
+<AbsoluteFill>
 
-useCurrentFrame()
+    <Sequence from={0} durationInFrames={120}>
 
-useVideoConfig()
+        <Img src="IMG_0704.jpg" />
 
-Fade Transition
+    </Sequence>
 
-Zoom Transition
+</AbsoluteFill>
+
+Frame Formula:
+
+frames = duration_in_seconds * 30
+
+Transitions:
+
+fade
+crossfade
+zoom
+slide
+cut

@@ -1,8 +1,53 @@
 from models.remotion import RemotionScript
 
+from prompts.remotion_prompt import REMOTION_PROMPT
 
-def generate_remotion_script():
+from rag.retriever import retrieve_context
 
-    raise NotImplementedError(
-        "Implemented in Chapter 6.2"
+from utils.llm import llm
+
+
+def generate_remotion_script(storyboard):
+
+    docs = retrieve_context(
+
+        "Remotion React video component",
+
+        k=1
+
     )
+
+    remotion_docs = docs[0]["text"]
+
+    structured_llm = llm.with_structured_output(
+
+        RemotionScript
+
+    )
+
+    script = structured_llm.invoke(
+
+        f"""
+{REMOTION_PROMPT}
+
+-----------------------
+
+REMOTION DOCUMENTATION
+
+{remotion_docs}
+
+-----------------------
+
+STORYBOARD
+
+{storyboard}
+
+Generate a React TypeScript Remotion component.
+
+The filename should be:
+
+GeneratedVideo.tsx
+"""
+    )
+
+    return script

@@ -9,53 +9,51 @@ import {
 } from "remotion";
 
 export const GeneratedVideo: React.FC = () => {
-    return (
-        <AbsoluteFill style={{ backgroundColor: "white" }}>
-            {/* Scene 1: Beautiful memory */}
-            <Sequence from={0} durationInFrames={120}>
-                <Scene1Content />
-            </Sequence>
-        </AbsoluteFill>
-    );
-};
-
-const Scene1Content: React.FC = () => {
     const frame = useCurrentFrame();
 
-    // Fade transition for the image (fades in over the first 30 frames of the sequence)
-    const opacity = interpolate(
+    // Scene 1: Night's glow.
+    const scene1DurationInFrames = 4.0 * 30; // 120 frames
+    const scene1StartFrame = 0.0 * 30; // 0 frames
+
+    const scene1Opacity = interpolate(
         frame,
-        [0, 30],
+        [scene1StartFrame, scene1StartFrame + 30], // Fade in over 1 second (30 frames)
         [0, 1],
-        { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+        {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+        }
     );
 
     return (
-        <AbsoluteFill>
-            <Img
-                src={staticFile("IMG_0704.jpg")}
-                style={{
-                    opacity,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                }}
-            />
-            <div
-                style={{
-                    position: "absolute",
-                    bottom: 50,
-                    width: "100%",
-                    textAlign: "center",
-                    color: "white",
-                    fontSize: 40,
-                    fontWeight: "bold",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
-                    opacity: opacity, // Caption also fades in with the image
-                }}
-            >
-                Beautiful memory
-            </div>
+        <AbsoluteFill style={{ backgroundColor: "black" }}>
+            {/* Scene 1: Night's glow. */}
+            <Sequence from={scene1StartFrame} durationInFrames={scene1DurationInFrames}>
+                <Img
+                    src={staticFile("GHZQ9770.JPG")}
+                    style={{
+                        opacity: scene1Opacity,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                    }}
+                />
+                <div
+                    style={{
+                        fontFamily: "Arial, sans-serif",
+                        fontSize: "50px",
+                        fontWeight: "bold",
+                        color: "white",
+                        textAlign: "center",
+                        position: "absolute",
+                        width: "100%",
+                        bottom: "10%",
+                        opacity: scene1Opacity, // Apply fade to caption as well
+                    }}
+                >
+                    Night's glow.
+                </div>
+            </Sequence>
         </AbsoluteFill>
     );
 };

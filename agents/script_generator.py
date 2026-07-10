@@ -1,5 +1,7 @@
 from state import PipelineState
 
+from services.remotion_service import generate_remotion_script
+
 
 def script_generator(state: PipelineState):
 
@@ -9,8 +11,20 @@ def script_generator(state: PipelineState):
 
     print()
 
-    print("Preparing Remotion generation...")
+    script = generate_remotion_script(
+
+        storyboard=state["storyboard"]
+
+    )
+
+    print(f"✓ Script generated")
+
+    print(f"File : {script.filename}")
 
     print()
 
-    return {}
+    return {
+
+        "remotion_script": script
+
+    }

@@ -86,3 +86,18 @@ for i, scene in enumerate(storyboard.scenes, start=1):
     print("-" * 60)
 
 print()
+print()
+
+print("=" * 60)
+print("REMOTION SCRIPT")
+print("=" * 60)
+
+script = result["remotion_script"]
+
+print(f"Filename : {script.filename}")
+
+print()
+
+print(script.code[:1000])
+
+print()

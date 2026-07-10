@@ -128,3 +128,19 @@ if not result["compile_success"]:
     )
 
 print()
+
+print()
+
+print("=" * 60)
+print("RETRY INFO")
+print("=" * 60)
+
+print(
+
+    "Retry Count :",
+
+    result["retry_count"]
+
+)
+
+print()

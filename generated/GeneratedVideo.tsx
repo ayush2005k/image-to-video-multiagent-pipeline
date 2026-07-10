@@ -4,51 +4,46 @@ import {
     Sequence,
     Img,
     useCurrentFrame,
-    interpolate
+    interpolate,
+    staticFile
 } from "remotion";
 
 export const GeneratedVideo: React.FC = () => {
-    // Scene 1: Night's Embrace.
-    const scene1DurationInFrames = 4 * 30; // 120 frames
-    const scene1StartFrame = 0 * 30; // 0 frames
-
-    return (
-        <AbsoluteFill>
-            <Sequence from={scene1StartFrame} durationInFrames={scene1DurationInFrames}>
-                <Scene1Content />
-            </Sequence>
-        </AbsoluteFill>
-    );
-};
-
-const Scene1Content: React.FC = () => {
     const frame = useCurrentFrame();
 
-    // Fade-in over the first 30 frames of this sequence
+    // Scene 1: Night's embrace. (fade transition)
+    const scene1StartTime = 0 * 30; // 0 frames
+    const scene1DurationFrames = 4 * 30; // 120 frames
+
     const opacity = interpolate(
         frame,
-        [0, 30],
+        [scene1StartTime, scene1StartTime + 30], // Fade in over the first 30 frames of the sequence
         [0, 1],
-        { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+        {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+        }
     );
 
     return (
-        <>
-            <Img src={"GHZQ9770.JPG"} style={{ opacity }} />
-            <div
-                style={{
-                    position: "absolute",
-                    bottom: 50,
-                    width: "100%",
-                    textAlign: "center",
-                    color: "white",
-                    fontSize: 50,
-                    fontFamily: "sans-serif",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.7)"
-                }}
-            >
-                Night's Embrace.
-            </div>
-        </>
+        <AbsoluteFill style={{ backgroundColor: "black" }}>
+            <Sequence from={scene1StartTime} durationInFrames={scene1DurationFrames}>
+                <Img src={staticFile("GHZQ9770.JPG")} style={{ opacity, width: "100%", height: "100%", objectFit: "cover" }} />
+                <div
+                    style={{
+                        fontFamily: "sans-serif",
+                        fontSize: 50,
+                        textAlign: "center",
+                        position: "absolute",
+                        bottom: 50,
+                        width: "100%",
+                        color: "white",
+                        opacity: opacity, // Apply fade to caption as well
+                    }}
+                >
+                    Night's embrace.
+                </div>
+            </Sequence>
+        </AbsoluteFill>
     );
 };

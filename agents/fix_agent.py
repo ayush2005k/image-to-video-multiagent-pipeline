@@ -20,6 +20,11 @@ def fix_agent(state: PipelineState):
     )
 
     print("✓ Script fixed")
+    print()
+    print(
+
+    f"Retry Count : {state['retry_count'] + 1}"
+    )
 
     print()
 

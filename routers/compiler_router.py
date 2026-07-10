@@ -1,6 +1,5 @@
 from state import PipelineState
 
-
 MAX_RETRIES = 3
 
 
@@ -11,6 +10,10 @@ def compiler_router(state: PipelineState):
         return "success"
 
     if state["retry_count"] >= MAX_RETRIES:
+
+        print()
+        print("Maximum retries reached.")
+        print()
 
         return "success"
 

@@ -11,6 +11,8 @@ from agents.storyboard_writer import storyboard_writer
 
 from agents.script_generator import script_generator
 
+from agents.compiler_agent import compiler_agent
+
 builder = StateGraph(PipelineState)
 
 # -------------------------
@@ -40,6 +42,11 @@ builder.add_node(
 builder.add_node(
     "script_generator",
     script_generator
+)
+
+builder.add_node(
+    "compiler_agent",
+    compiler_agent
 )
 
 # -------------------------
@@ -74,6 +81,10 @@ builder.add_edge(
 )
 builder.add_edge(
     "script_generator",
+    "compiler_agent"
+)
+builder.add_edge(
+    "compiler_agent",
     END
 )
 # -------------------------

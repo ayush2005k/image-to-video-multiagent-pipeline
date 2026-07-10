@@ -102,3 +102,29 @@ print()
 print(script.code[:1000])
 
 print()
+
+print()
+
+print("=" * 60)
+print("COMPILER")
+print("=" * 60)
+
+print(
+
+    "Compile Success :",
+
+    result["compile_success"]
+
+)
+
+if not result["compile_success"]:
+
+    print()
+
+    print(
+
+        result["compile_error"][:1000]
+
+    )
+
+print()

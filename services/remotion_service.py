@@ -6,6 +6,7 @@ from rag.retriever import retrieve_context
 
 from utils.llm import llm
 
+from utils.file_writer import save_remotion_script
 
 def generate_remotion_script(storyboard):
 
@@ -49,5 +50,7 @@ The filename should be:
 GeneratedVideo.tsx
 """
     )
+
+    save_remotion_script(script)
 
     return script

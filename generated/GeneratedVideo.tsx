@@ -4,34 +4,37 @@ import {
     Sequence,
     Img,
     useCurrentFrame,
-    interpolate,
-    staticFile,
+    interpolate
 } from "remotion";
 
-// Component for the first scene content, including its specific logic
+export const GeneratedVideo: React.FC = () => {
+    // Scene 1: Night's Embrace.
+    const scene1DurationInFrames = 4 * 30; // 120 frames
+    const scene1StartFrame = 0 * 30; // 0 frames
+
+    return (
+        <AbsoluteFill>
+            <Sequence from={scene1StartFrame} durationInFrames={scene1DurationInFrames}>
+                <Scene1Content />
+            </Sequence>
+        </AbsoluteFill>
+    );
+};
+
 const Scene1Content: React.FC = () => {
     const frame = useCurrentFrame();
-    const fadeDuration = 30; // 1 second fade-in
 
-    // Opacity for fade-in effect
+    // Fade-in over the first 30 frames of this sequence
     const opacity = interpolate(
         frame,
-        [0, fadeDuration],
+        [0, 30],
         [0, 1],
         { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
     );
 
     return (
-        <AbsoluteFill>
-            <Img
-                src={staticFile("GHZQ9770.JPG")}
-                style={{
-                    opacity,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                }}
-            />
+        <>
+            <Img src={"GHZQ9770.JPG"} style={{ opacity }} />
             <div
                 style={{
                     position: "absolute",
@@ -40,24 +43,12 @@ const Scene1Content: React.FC = () => {
                     textAlign: "center",
                     color: "white",
                     fontSize: 50,
-                    fontWeight: "bold",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
-                    opacity, // Apply fade to caption as well
+                    fontFamily: "sans-serif",
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.7)"
                 }}
             >
-                Night's embrace.
+                Night's Embrace.
             </div>
-        </AbsoluteFill>
-    );
-};
-
-export const GeneratedVideo: React.FC = () => {
-    return (
-        <AbsoluteFill style={{ backgroundColor: "black" }}>
-            {/* Scene 1: Night's embrace. */}
-            <Sequence from={0} durationInFrames={120}> {/* 4.0 seconds * 30 fps = 120 frames */}
-                <Scene1Content />
-            </Sequence>
-        </AbsoluteFill>
+        </>
     );
 };

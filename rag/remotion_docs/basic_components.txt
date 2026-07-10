@@ -1,33 +1,38 @@
 Remotion Components Reference
 
-Use these imports:
+Imports:
 
-import { AbsoluteFill, Sequence, Img } from "remotion";
+import {
+    AbsoluteFill,
+    Sequence,
+    Img,
+    useCurrentFrame,
+    interpolate
+} from "remotion";
 
 Rules:
 
-- Use AbsoluteFill as the root component.
-- Use one Sequence for each scene.
-- Use Img for images.
-- Use captions using normal text elements.
-- Sequence duration is given in frames.
-- FPS = 30.
+1. Use AbsoluteFill as the root component.
 
-Example:
+2. Use one Sequence per storyboard scene.
 
-<AbsoluteFill>
+3. Use Img for images.
 
-    <Sequence from={0} durationInFrames={120}>
+4. Use captions using text elements.
 
-        <Img src="IMG_0704.jpg" />
+5. FPS = 30.
 
-    </Sequence>
-
-</AbsoluteFill>
-
-Frame Formula:
+Frame formula:
 
 frames = duration_in_seconds * 30
+
+Examples:
+
+<Sequence from={0} durationInFrames={120}>
+
+    <Img src="IMG_0704.jpg" />
+
+</Sequence>
 
 Transitions:
 
@@ -36,3 +41,17 @@ crossfade
 zoom
 slide
 cut
+
+Fade Example:
+
+const frame = useCurrentFrame();
+
+const opacity = interpolate(
+
+    frame,
+
+    [0, 30],
+
+    [0, 1]
+
+);

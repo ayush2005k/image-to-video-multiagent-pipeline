@@ -9,6 +9,8 @@ from agents.image_selector import image_selector
 
 from agents.storyboard_writer import storyboard_writer
 
+from agents.script_generator import script_generator
+
 builder = StateGraph(PipelineState)
 
 # -------------------------
@@ -33,6 +35,11 @@ builder.add_node(
 builder.add_node(
     "storyboard_writer",
     storyboard_writer
+)
+
+builder.add_node(
+    "script_generator",
+    script_generator
 )
 
 # -------------------------
@@ -63,9 +70,12 @@ builder.add_edge(
 )
 builder.add_edge(
     "storyboard_writer",
+    "script_generator"
+)
+builder.add_edge(
+    "script_generator",
     END
 )
-
 # -------------------------
 # Compile Graph
 # -------------------------

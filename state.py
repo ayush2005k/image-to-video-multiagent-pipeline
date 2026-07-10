@@ -4,6 +4,7 @@ from models.intent import VideoIntent
 from models.image import ImageAnalysis
 from models.storyboard import StoryboardScene
 from models.storyboard import Storyboard
+from models.remotion import RemotionScript
 
 class PipelineState(TypedDict):
 
@@ -17,7 +18,7 @@ class PipelineState(TypedDict):
 
     storyboard: Storyboard
 
-    remotion_script:str
+    remotion_script: RemotionScript
 
     compile_success:bool
 

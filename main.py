@@ -95,6 +95,7 @@ print("=" * 60)
 script = result["remotion_script"]
 
 print(f"Filename : {script.filename}")
+print(f"Path     : {script.path}")
 
 print()
 

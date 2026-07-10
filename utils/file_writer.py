@@ -19,4 +19,6 @@ def save_remotion_script(script):
 
     )
 
-    return path
+    script.path = str(path)
+
+    return script

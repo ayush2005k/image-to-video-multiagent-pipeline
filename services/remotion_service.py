@@ -51,6 +51,6 @@ GeneratedVideo.tsx
 """
     )
 
-    save_remotion_script(script)
+    script = save_remotion_script(script)
 
     return script

@@ -5,24 +5,13 @@ def compile_remotion(script_path: str):
 
     try:
 
+        command = "npx tsc --noEmit"
+
         result = subprocess.run(
-
-            [
-
-                "npx",
-
-                "tsc",
-
-                "--noEmit",
-
-                script_path
-
-            ],
-
+            command,
             capture_output=True,
-
-            text=True
-
+            text=True,
+            shell=True
         )
 
         success = result.returncode == 0
@@ -30,19 +19,13 @@ def compile_remotion(script_path: str):
         error = result.stderr + result.stdout
 
         return {
-
             "compile_success": success,
-
             "compile_error": error
-
         }
 
     except Exception as e:
 
         return {
-
             "compile_success": False,
-
             "compile_error": str(e)
-
         }

@@ -1,6 +1,6 @@
 from state import PipelineState
 
-MAX_RETRIES = 3
+MAX_RETRIES = 1
 
 
 def compiler_router(state: PipelineState):

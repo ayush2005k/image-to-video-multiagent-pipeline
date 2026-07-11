@@ -14,6 +14,8 @@ from routers.compiler_router import compiler_router
 
 from agents.fix_agent import fix_agent
 
+from agents.renderer_agent import renderer_agent
+
 builder = StateGraph(PipelineState)
 
 # -------------------------
@@ -53,6 +55,10 @@ builder.add_node(
 builder.add_node(
     "fix_agent",
     fix_agent
+)
+builder.add_node(
+    "renderer_agent",
+    renderer_agent
 )
 
 # Temporary placeholder node
@@ -101,13 +107,17 @@ builder.add_conditional_edges(
     "compiler_agent",
     compiler_router,
     {
-        "success": END,
+        "success": "renderer_agent",
         "retry": "fix_agent"
     }
 )
 builder.add_edge(
     "fix_agent",
     "script_generator"
+)
+builder.add_edge(
+    "renderer_agent",
+    END
 )
 
 # -------------------------

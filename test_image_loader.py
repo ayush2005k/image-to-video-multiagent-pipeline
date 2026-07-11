@@ -1,6 +1,6 @@
 from utils.image_loader import load_images
 
-images = load_images("./assets")
+images = load_images("./public")
 
 print()
 

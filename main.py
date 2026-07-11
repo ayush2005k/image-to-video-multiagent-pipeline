@@ -1,9 +1,10 @@
+
+
 from graph.pipeline import graph
 
 initial_state = {
 
-    "prompt": "Cinematic wedding reel, slow and emotional, warm tones, minimal text",
-
+    "prompt": "Create an energetic football highlight reel.",
     "retry_count": 0
 
 }

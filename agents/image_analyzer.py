@@ -1,13 +1,12 @@
 from state import PipelineState
 
 from utils.image_loader import load_images
-
 from services.vision_service import analyze_image
 
 
 def image_analyzer(state: PipelineState):
 
-    images = load_images("./assets")
+    images = load_images("./public")
 
     analyses = []
 

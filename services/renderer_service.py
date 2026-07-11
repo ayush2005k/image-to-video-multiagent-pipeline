@@ -28,6 +28,7 @@ def render_video():
         encoding="utf-8",
         errors="ignore"
     )
+    print(result.returncode)
 
     return {
 

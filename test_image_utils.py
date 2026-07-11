@@ -1,7 +1,7 @@
 from utils.image_loader import load_images
 from utils.image_utils import get_image_size
 
-images = load_images("./assets")
+images = load_images("./public")
 
 for image in images:
 

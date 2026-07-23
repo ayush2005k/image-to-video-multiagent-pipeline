@@ -1,4 +1,4 @@
-# Image to Video Multi-Agent Pipeline
+# Image to Video Multi-Agent Pipelin
 
 An Agentic AI pipeline built using LangGraph.
 
